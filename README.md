@@ -88,3 +88,16 @@ Dense Layer
 Dropout
 ↓
 Output Layer (Sigmoid)
+```
+---
+
+# <div align="center">Presented By :</div>
+
+<div align="center">
+
+| <img src="https://i.ibb.co/xGPVFJD/dicoding-logo-white.png" height="60" alt="dicoding-logo-white" border="0"> | <img src="https://i.ibb.co.com/wFy2z2pc/dbs-bank-1786x512.png" height="60" alt="dbs-logo" border="0"> |
+| :---: | :---: |
+
+</div>
+
+
