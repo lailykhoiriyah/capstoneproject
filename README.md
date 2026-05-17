@@ -1,5 +1,4 @@
-  
-  <a href="https://ibb.co/pxpCNDc"><img src="https://i.ibb.co.com/XrXvv8Y8/Trip-Well-Git.png" alt="icon" border="0"></a>
+ <a href="https://ibb.co/pxpCNDc"><img src="https://i.ibb.co.com/MyR1XPQK/Trip-Well.png" alt="icon" border="0"></a>
 
 # TripWell – Inclusive Tourism Accessibility Classification
 
