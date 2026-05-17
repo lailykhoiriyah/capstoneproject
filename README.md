@@ -1,4 +1,3 @@
-<div align="center">
   
   <a href="https://ibb.co/pxpCNDc"><img src="https://i.ibb.co.com/RT3MKVXk/image-1.png" alt="icon" border="0"></a>
 
