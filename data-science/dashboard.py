@@ -16,7 +16,7 @@ sns.set_theme(style='whitegrid')
 # =========================================================
 @st.cache_data
 def load_data():
-return pd.read_csv("data-science/preprocessed_dataset.csv")
+    return pd.read_csv("data-science/preprocessed_dataset.csv")
 
 df_mentah = load_data()
 
