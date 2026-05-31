@@ -1,0 +1,195 @@
+{
+    "file_name": "preprocessed_dataset.csv",
+    "num_rows": 11620,
+    "num_columns": 10,
+    "columns": [
+        {
+            "column_name": "id",
+            "data_type": "object",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 11620,
+            "sample_values": [
+                "47d0cdd937754bd6b860f89b2bab1dbb",
+                "4804acd6c05e4f89b098e2ca35019419",
+                "3eae265bf32a45eca31765a4145bc030",
+                "61037dbdb7b14045be49d4494e95cf05",
+                "a2c9e817e2b949c6880f971f43a11d2f"
+            ]
+        },
+        {
+            "column_name": "datetime",
+            "data_type": "object",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 5828,
+            "sample_values": [
+                "2022-05-15 11:58:43",
+                "2022-08-15 11:58:43",
+                "2022-03-15 11:58:43",
+                "2022-05-15 11:58:44",
+                "2022-08-15 11:58:44"
+            ]
+        },
+        {
+            "column_name": "location",
+            "data_type": "object",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 25,
+            "sample_values": [
+                "Curug Malela",
+                "Curug Malela",
+                "Curug Malela",
+                "Curug Malela",
+                "Curug Malela"
+            ]
+        },
+        {
+            "column_name": "text",
+            "data_type": "object",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 11620,
+            "sample_values": [
+                "Akses jalannya waktu itu masih sulit di jangkau, perjalanan menuji curug lumayan jauh",
+                "Perjalanan yg bnr\" bikin Syahduu ,, dr Tempat parkir ke lokasi Curug ,,\nLelahh pun terasa hilang ketika sampe lokasi ,, 🥰🥰 …",
+                "Minggu 13 februari 2022 ,\n\ngas santai pakai motor dari dago jam 6:00 sampe parkiran curug jam 9 lebih karena kita disasarin gps, Jika sudah sampai di gunung halu jangan percaya gps, saya di sasarin 😂\nIkuti petunjuk jalan dan tanya warga saja.\n\nJalan lewat cililin sudah mulai bagus jalannya di cor, tapi ya begitu masih banyak proyek jalan yg blom beres, pada bolong tengah2 jalan ati2 aja..\n\nOke sudah sampai,\ntiket permotor 12rb sudah termasuk tiket masuk, parkir motor 5rb, ditagih pas pulang\n\nharga makanan diparkiran nasi ayam sayur kacang 20rb 😁 gpp larisin guys kasian yg jualan disana pada sepi.\n\nOke star jalan kaki dari parkiran full trek turunan (wah bakal berat nih pulangnya) jalan santai menikmati view, jalannya lumayan kudu ati2 , sambil ambil video  kita sampai curug 30-40menit.\n\nDi perjalanan banyak warung yang buka namun sayang sepi pembeli karena waktu kami kesana hanya ada kami yang turun dan 3 orang yang naik, tidak berapa lama datang 1 pasangan. Jadi kami tidak sepi2 amat..\n\nUntuk curugnya sendiri bagus, besar, indah bisa di liat di foto, jalan bersih tidak ada sampah, pas kami kesana ada bapa2 petugas yg lg beres2, lapin itu tempat duduk, sasapu, baguss\n\nNamun sayang jembatan tempat foto yang baru2 ini dibuat kayu nya sudah banyak bolong, dan licin, mungkin karena kena cipratan air terus jadi lapuk, kudu di akalin tuh cari bahan yang kuat buat kena air, pokoknya kudu hati2 pisan karena rawan jatoh..\n\nOke lanjut balik nanjak dikit, ketemu lah sama bapak2 ojek, disitu kami berdiskusi bersama istri mau jalan apa naik ojek aja? Setelah perdebatan panjang akhirnya kami naik ojek 😂😂 dengan tarif awal 35rb kami tawar jadi 30rb\n\nEh buset ternyata treknya ekstrim, licin, nanjak, tidak tega kami gan 😂😂😂 ya kami tambahin lah buat bapak ojeknya jdi 50rb/motor..\n\nKalo anda ada rejeki mending cobain dah pengalaman naik ojek ketika pulang dari curug malela sebab worthed bangett,,\n\nDriver ojeknya juga berpengalaman walopun cuma pakai motor vega r tapi bisa antar kami ke atas, btw kami beratnya 97kg gan 😂😂 kasian makanya kami tambahin..\n\nDan kami pun pulang.. sekian semoga bermanfaat..",
+                "7 mei 2022\nTouring bari mudik\nMntap perjalanan sungguh menangtang namun terbayar dengan indahnya pemandang yg di suguhkan 🤩\nNyampe pulang kesorean saking asyiknya di jln😆",
+                "Perjalanan touring motor dari bekasi melewati Track saguling... Pas sampai curug terbayar kan dengan keindahan panorama alam sekitar curug yang masih asri..."
+            ]
+        },
+        {
+            "column_name": "rating",
+            "data_type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 5,
+            "sample_values": [
+                "4",
+                "5",
+                "5",
+                "5",
+                "5"
+            ],
+            "min": 1.0,
+            "max": 5.0,
+            "mean": 4.502581755593804
+        },
+        {
+            "column_name": "accessibility",
+            "data_type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 3,
+            "sample_values": [
+                "0",
+                "1",
+                "2",
+                "2",
+                "1"
+            ],
+            "min": 0.0,
+            "max": 2.0,
+            "mean": 0.9740963855421687,
+            "preprocessing": {
+                "method": "label_encoding",
+                "original_type": "string",
+                "processed_type": "integer",
+                "mapping": {
+                    "negative": 0,
+                    "neutral": 1,
+                    "positive": 2
+                },
+                "description": "Accessibility sentiment label"
+            }
+        },
+        {
+            "column_name": "facility",
+            "data_type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 3,
+            "sample_values": [
+                "1",
+                "1",
+                "0",
+                "1",
+                "1"
+            ],
+            "min": 0.0,
+            "max": 2.0,
+            "mean": 1.096471600688468,
+            "preprocessing": {
+                "method": "label_encoding",
+                "original_type": "string",
+                "processed_type": "integer",
+                "mapping": {
+                    "negative": 0,
+                    "neutral": 1,
+                    "positive": 2
+                },
+                "description": "Facility sentiment label"
+            }
+        },
+        {
+            "column_name": "activity",
+            "data_type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 3,
+            "sample_values": [
+                "1",
+                "2",
+                "2",
+                "2",
+                "2"
+            ],
+            "min": 0.0,
+            "max": 2.0,
+            "mean": 1.5826161790017212,
+            "preprocessing": {
+                "method": "label_encoding",
+                "original_type": "string",
+                "processed_type": "integer",
+                "mapping": {
+                    "negative": 0,
+                    "neutral": 1,
+                    "positive": 2
+                },
+                "description": "Activity sentiment label"
+            }
+        },
+        {
+            "column_name": "word_count",
+            "data_type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "unique_count": 244,
+            "sample_values": [
+                "13",
+                "23",
+                "349",
+                "26",
+                "22"
+            ],
+            "min": 1.0,
+            "max": 567.0,
+            "mean": 27.632444061962133
+        },
+        {
+            "column_name": "text_clean",
+            "data_type": "object",
+            "nullable": true,
+            "null_count": 104,
+            "unique_count": 11427,
+            "sample_values": [
+                "akses jalannya waktu itu masih sulit di jangkau perjalanan menuji curug lumayan jauh",
+                "perjalanan yang benar bikin syahduu dari tempat parkir ke lokasi curug lelahh pun terasa hilang ketika sampe lokasi",
+                "minggu februari gas santai pakai motor dari dago jam sampe parkiran curug jam lebih karena kita disasarin gps jika sudah sampai di gunung halu jangan percaya gps saya di sasarin ikuti petunjuk jalan dan tanya warga saja jalan lewat cililin sudah mulai bagus jalannya di cor tapi ya begitu masih banyak proyek jalan yang blom beres pada bolong tengah2 jalan ati2 saja oke sudah sampai tiket permotor 12rb sudah termasuk tiket masuk parkir motor 5rb ditagih pas pulang harga makanan diparkiran nasi ayam sayur kacang 20rb gpp larisin guys kasian yang jualan disana pada sepi oke star jalan kaki dari parkiran full trek turunan wah bakal berat nih pulangnya jalan santai menikmati view jalannya lumayan kudu ati2 sambil ambil video kita sampai curug 40menit di perjalanan banyak warung yang buka namun sayang sepi pembeli karena waktu kami kesana hanya ada kami yang turun dan orang yang naik tidak berapa lama datang pasangan jadi kami tidak sepi2 amat untuk curugnya sendiri bagus besar indah bisa di liat di foto jalan bersih tidak ada sampah pas kami kesana ada bapa2 petugas yang lagi beres2 lapin itu tempat duduk sasapu baguss namun sayang jembatan tempat foto yang baru2 ini dibuat kayu nya sudah banyak bolong dan licin mungkin karena kena cipratan air terus jadi lapuk kudu di akalin tuh cari bahan yang kuat buat kena air pokoknya kudu hati2 pisan karena rawan jatoh oke lanjut balik nanjak dikit ketemu lah sama bapak2 ojek disitu kami berdiskusi bersama istri mau jalan apa naik ojek saja setelah perdebatan panjang akhirnya kami naik ojek dengan tarif awal 35rb kami tawar jadi 30rb eh buset ternyata treknya ekstrim licin nanjak tidak tega kami gan ya kami tambahin lah buat bapak ojeknya jdi 50rb motor kalo anda ada rejeki mending cobain dah pengalaman naik ojek ketika pulang dari curug malela sebab worthed bangett driver ojeknya juga berpengalaman walopun cuma pakai motor vega r tapi bisa antar kami ke atas btw kami beratnya 97kg gan kasian makanya kami tambahin dan kami pun pulang sekian semoga bermanfaat",
+                "mei touring bari mudik mantap perjalanan sungguh menangtang namun terbayar dengan indahnya pemandang yang di suguhkan nyampe pulang kesorean saking asyiknya di jalan",
+                "perjalanan touring motor dari bekasi melewati track saguling pas sampai curug terbayar kan dengan keindahan panorama alam sekitar curug yang masih asri"
+            ]
+        }
+    ]
+}
