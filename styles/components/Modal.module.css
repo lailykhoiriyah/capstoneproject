@@ -1,0 +1,244 @@
+.reviewModalContent {
+  max-width: 520px;
+}
+
+.reviewModalContent h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+.reviewModalContent p {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 20px;
+}
+
+.reviewInput {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 12px;
+}
+
+.reviewInput:focus {
+  border-color: var(--green-700);
+}
+
+.aiLoading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--gray-300);
+  border-top-color: var(--green-700);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.aiSection {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-200);
+  margin-bottom: 16px;
+}
+
+.aiSection h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+}
+
+.aiResultBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  animation: slideUp 0.3s ease-out;
+}
+
+.aiResultPos {
+  background-color: rgba(21, 128, 61, 0.1);
+  color: #15803d;
+  border: 1px solid rgba(21, 128, 61, 0.2);
+}
+
+.aiResultNeg {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.aiIcon {
+  font-size: 20px;
+}
+
+.aiText {
+  flex: 1;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.aiOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.aiOption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--gray-700);
+  cursor: default;
+}
+
+.aiCheckbox {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.aiCheckboxChecked {
+  background-color: var(--green-700);
+  border-color: var(--green-700);
+  color: white;
+}
+
+.aiCheckboxCheckedNeg {
+  background-color: #ef4444;
+  border-color: #ef4444;
+  color: white;
+}
+
+.aiOptionActive {
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+/* Photo Upload */
+.photoUploadArea {
+  border: 1.5px dashed var(--gray-300);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+.photoUploadArea:hover {
+  border-color: var(--green-700);
+}
+
+.photoPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-500);
+  font-size: 13px;
+}
+
+.photoPreview {
+  position: relative;
+}
+
+.photoPreview img {
+  max-height: 160px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.photoClearBtn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--red-500);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalBtns {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btnSubmit {
+  flex: 1;
+  padding: 13px;
+  background: var(--green-700);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.btnSubmit:hover {
+  background: var(--green-800);
+}
+
+.btnCancel {
+  padding: 13px 20px;
+  background: none;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.btnCancel:hover {
+  background: var(--gray-100);
+}

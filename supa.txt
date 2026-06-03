@@ -1,0 +1,41 @@
+password : TripWellAsik!!!
+project id : boldcmxpjtkgfwhvwuiz
+project region :ap-southeast-1
+db name = tripwell-db
+
+==================================================
+INSTRUKSI UNTUK SUPABASE (SQL EDITOR)
+==================================================
+Silakan copy dan jalankan perintah SQL di bawah ini di Dashboard Supabase (SQL Editor) 
+untuk membuat tabel yang dibutuhkan aplikasi Tripwell:
+
+-- 1. Aktifkan Extension UUID
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- 2. Buat Tabel Users
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    google_id TEXT,
+    name TEXT,
+    email TEXT UNIQUE,
+    avatar_url TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3. Buat Tabel Reviews
+CREATE TABLE IF NOT EXISTS reviews (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    destination_id TEXT NOT NULL,
+    destination_name TEXT,
+    review_text TEXT,
+    ai_label TEXT,
+    ai_confidence FLOAT8,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+==================================================
+PENGATURAN GOOGLE AUTH (DI GOOGLE CLOUD CONSOLE)
+==================================================
+Pastikan "Authorized redirect URIs" sudah berisi:
+http://localhost:3000/api/auth/callback/google
