@@ -175,40 +175,52 @@ elif pilihan == "Bisnis 1":
     st.write("")
 
     st.markdown("#### 3. Top 5 Lokasi dengan Proporsi Sentimen Aksesibilitas Negatif Terbesar")
-    top_5_locations = df_check.nlargest(5, 'neg_pct').sort_values('neg_pct', ascending=False).copy()
-    fig_stack, ax_stack = plt.subplots(figsize=(10, 5))
-    
-    locations = top_5_locations['location']
-    negative = top_5_locations['neg_pct']
-    neutral = top_5_locations['neu_pct']
-    positive = top_5_locations['pos_pct']
 
-    plt.bar(locations, negative, label='Negative', color='#ff9999')
-    plt.bar(locations, neutral, bottom=negative, label='Neutral', color='#ffe162')
-    plt.bar(locations, positive, bottom=negative + neutral, label='Positive', color='#b3e6b3')
+
+    top_5_locations = df_check.nlargest(5, 'neg_pct').sort_values('neg_pct', ascending=False).copy()
+
+    fig_stack, ax_stack = plt.subplots(figsize=(10, 5))
+
+    locations = top_5_locations['location'].values
+
+    # KUNCI UTAMA 1: Tambahkan .values agar index Pandas tidak mengacaukan urutan stacking
+    negative = top_5_locations['neg_pct'].values
+    neutral = top_5_locations['neu_pct'].values
+    positive = top_5_locations['pos_pct'].values
+
+    # KUNCI UTAMA 2: Gunakan ax_stack.bar, BUKAN plt.bar
+    ax_stack.bar(locations, negative, label='Negative', color='#ff9999')
+    ax_stack.bar(locations, neutral, bottom=negative, label='Neutral', color='#ffe162')
+    ax_stack.bar(locations, positive, bottom=negative + neutral, label='Positive', color='#b3e6b3')
 
     for c in ax_stack.containers:
         ax_label = [f'{w:.1f}%' if w > 0 else '' for w in c.datavalues]
         ax_stack.bar_label(c, labels=ax_label, label_type='center', fontsize=10, weight='bold')
 
-    plt.title('Top 5 Lokasi dengan Proporsi Sentimen Aksesibilitas Negatif Terbesar', fontsize=12)
-    plt.xlabel('Lokasi Wisata')
-    plt.ylabel('Proporsi Sentimen (%)')
-    plt.xticks(rotation=15, ha='right')
-    plt.ylim(0, 100)
-    plt.legend()
-    plt.tight_layout()
-    st.pyplot(fig_stack)
-    
-    st.write("")
+    # Gunakan ax_stack untuk mengatur judul dan label
+    ax_stack.set_title('Top 5 Lokasi dengan Proporsi Sentimen Aksesibilitas Negatif Terbesar', fontsize=12)
+    ax_stack.set_xlabel('Lokasi Wisata')
+    ax_stack.set_ylabel('Proporsi Sentimen (%)')
 
-    st.markdown("#### Kesimpulan Analisis Strategis:")
-    st.success("""
-    * **Dominasi Curug Malela:** Curug Malela menjadi outlier utama dengan proporsi sentimen negatif aksesibilitas mencapai 52.5% (hampir tiga kali lipat dari peringkat kedua). Ini adalah satu-satunya lokasi dengan keluhan akses mayoritas (>50%).
-    * **Pola Mayoritas Netral:** Empat lokasi lainnya dalam Top 5 (Bukit Senyum, Curug Layung, Stone Garden, Sanghyang Heuleut) memiliki pola seragam yang didominasi sentimen netral (77–81%). Mayoritas pengunjung di lokasi tersebut cenderung pasif dalam menilai aksesibilitas secara spesifik.
-    * **Konsistensi Rating dan Sentimen:** Kelima lokasi dengan masalah aksesibilitas tertinggi ini rata-rata memiliki rating menengah ke bawah (4.39 - 4.56) dibandingkan lokasi lain di dataset. Ini menunjukkan bahwa kendala aksesibilitas berkontribusi menekan nilai kepuasan pengunjung secara umum.
-    * **Anomali Data (Sampel Minim):** Lokasi Sirtwo Island Saguling tercatat memiliki rating sempurna (5.00). Namun, angka ini tidak valid untuk dijadikan acuan karena hanya didasarkan pada total 3 ulasan (sampel terendah), sehingga murni merupakan anomali statistik.
-    """)
+    # Cara rotasi teks di ax_stack agak berbeda dengan plt
+    ax_stack.set_xticks(range(len(locations)))
+    ax_stack.set_xticklabels(locations, rotation=15, ha='right')
+
+    ax_stack.set_ylim(0, 100)
+    ax_stack.legend()
+    fig_stack.tight_layout()
+
+    # Render di Streamlit
+    st.pyplot(fig_stack)
+
+    st.write("")
+        st.markdown("#### Kesimpulan Analisis Strategis:")
+        st.success("""
+        * **Dominasi Curug Malela:** Curug Malela menjadi outlier utama dengan proporsi sentimen negatif aksesibilitas mencapai 52.5% (hampir tiga kali lipat dari peringkat kedua). Ini adalah satu-satunya lokasi dengan keluhan akses mayoritas (>50%).
+        * **Pola Mayoritas Netral:** Empat lokasi lainnya dalam Top 5 (Bukit Senyum, Curug Layung, Stone Garden, Sanghyang Heuleut) memiliki pola seragam yang didominasi sentimen netral (77–81%). Mayoritas pengunjung di lokasi tersebut cenderung pasif dalam menilai aksesibilitas secara spesifik.
+        * **Konsistensi Rating dan Sentimen:** Kelima lokasi dengan masalah aksesibilitas tertinggi ini rata-rata memiliki rating menengah ke bawah (4.39 - 4.56) dibandingkan lokasi lain di dataset. Ini menunjukkan bahwa kendala aksesibilitas berkontribusi menekan nilai kepuasan pengunjung secara umum.
+        * **Anomali Data (Sampel Minim):** Lokasi Sirtwo Island Saguling tercatat memiliki rating sempurna (5.00). Namun, angka ini tidak valid untuk dijadikan acuan karena hanya didasarkan pada total 3 ulasan (sampel terendah), sehingga murni merupakan anomali statistik.
+        """)
 
 # =========================================================
 # OPSI 4: JIKA MEMILIH PERTANYAAN BISNIS 2
