@@ -175,12 +175,8 @@ elif pilihan == "Bisnis 1":
     st.write("")
 
     st.markdown("#### 3. Top 5 Lokasi dengan Proporsi Sentimen Aksesibilitas Negatif Terbesar")
-
-
     top_5_locations = df_check.nlargest(5, 'neg_pct').sort_values('neg_pct', ascending=False).copy()
-
     fig_stack, ax_stack = plt.subplots(figsize=(10, 5))
-
     locations = top_5_locations['location'].values
 
     # KUNCI UTAMA 1: Tambahkan .values agar index Pandas tidak mengacaukan urutan stacking
@@ -194,8 +190,8 @@ elif pilihan == "Bisnis 1":
     ax_stack.bar(locations, positive, bottom=negative + neutral, label='Positive', color='#b3e6b3')
 
     for c in ax_stack.containers:
-        ax_label = [f'{w:.1f}%' if w > 0 else '' for w in c.datavalues]
-        ax_stack.bar_label(c, labels=ax_label, label_type='center', fontsize=10, weight='bold')
+    ax_label = [f'{w:.1f}%' if w > 0 else '' for w in c.datavalues]
+    ax_stack.bar_label(c, labels=ax_label, label_type='center', fontsize=10, weight='bold')
 
     # Gunakan ax_stack untuk mengatur judul dan label
     ax_stack.set_title('Top 5 Lokasi dengan Proporsi Sentimen Aksesibilitas Negatif Terbesar', fontsize=12)
