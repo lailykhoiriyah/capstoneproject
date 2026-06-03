@@ -1,9 +1,0 @@
-node_modules/
-.next/
-.env
-.env.local
-
-*.keras
-*.pkl
-
-.DS_Store
