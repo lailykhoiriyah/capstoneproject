@@ -16,6 +16,7 @@ sns.set_theme(style='whitegrid')
 # =========================================================
 @st.cache_data
 def load_data():
+    # Ditambahkan 'r' di depan string agar path Windows dibaca dengan aman
     return pd.read_csv("data-science/preprocessed_dataset.csv")
 
 df_mentah = load_data()
@@ -27,7 +28,8 @@ df_rating = df_mentah.groupby('location')['rating'].mean().reset_index(name='avg
 df_sentimen = pd.crosstab(df_mentah['location'], df_mentah['accessibility'], normalize='index') * 100
 df_sentimen = df_sentimen.reset_index()
 
-rename_dict = {0: 'neg_pct', 1: 'pos_pct', 2: 'neu_pct'}
+# Ubah urutan 1 dan 2 menjadi neu_pct lalu pos_pct
+rename_dict = {0: 'neg_pct', 1: 'neu_pct', 2: 'pos_pct'}
 df_sentimen.rename(columns=rename_dict, inplace=True)
 df_check = pd.merge(df_rating, df_sentimen, on='location')
 
@@ -35,10 +37,8 @@ df_check = pd.merge(df_rating, df_sentimen, on='location')
 # 3. SIDEBAR (LOGO & MENU NAVIGASI)
 # =========================================================
 with st.sidebar:
-    
     st.image("data-science/tripwell.png", use_container_width=True) 
     st.markdown("---")
-    
     
     pilihan = option_menu(
         menu_title="Navigasi Analisis", 
@@ -88,7 +88,6 @@ if pilihan == "Rating":
 elif pilihan == "Top N-Grams":
     st.subheader(" Kumpulan Pasangan Kata (N-Grams) Paling Sering Muncul")
     
-    # Kita bagi layarnya jadi 2 kolom (kiri-kanan)
     col_kiri, col_kanan = st.columns(2)
     
     with col_kiri:
@@ -99,7 +98,6 @@ elif pilihan == "Top N-Grams":
         gram_freq_bi = pd.DataFrame(sorted([(count_values_bi[i], k) for k, i in cv_bi.vocabulary_.items()], reverse=True))
         gram_freq_bi.columns = ['frequency', 'ngram']
 
-      
         fig_bi = plt.figure(figsize=(8, 6))
         sns.barplot(x=gram_freq_bi['frequency'][:10], y=gram_freq_bi['ngram'][:10])
         plt.title('Top 10 Most Frequent Bigrams', fontsize=12)
@@ -179,26 +177,22 @@ elif pilihan == "Bisnis 1":
     fig_stack, ax_stack = plt.subplots(figsize=(10, 5))
     locations = top_5_locations['location'].values
 
-    # KUNCI UTAMA 1: Tambahkan .values agar index Pandas tidak mengacaukan urutan stacking
     negative = top_5_locations['neg_pct'].values
     neutral = top_5_locations['neu_pct'].values
     positive = top_5_locations['pos_pct'].values
 
-    # KUNCI UTAMA 2: Gunakan ax_stack.bar, BUKAN plt.bar
     ax_stack.bar(locations, negative, label='Negative', color='#ff9999')
     ax_stack.bar(locations, neutral, bottom=negative, label='Neutral', color='#ffe162')
     ax_stack.bar(locations, positive, bottom=negative + neutral, label='Positive', color='#b3e6b3')
 
     for c in ax_stack.containers:
-    ax_label = [f'{w:.1f}%' if w > 0 else '' for w in c.datavalues]
-    ax_stack.bar_label(c, labels=ax_label, label_type='center', fontsize=10, weight='bold')
+        ax_label = [f'{w:.1f}%' if w > 0 else '' for w in c.datavalues]
+        ax_stack.bar_label(c, labels=ax_label, label_type='center', fontsize=10, weight='bold')
 
-    # Gunakan ax_stack untuk mengatur judul dan label
     ax_stack.set_title('Top 5 Lokasi dengan Proporsi Sentimen Aksesibilitas Negatif Terbesar', fontsize=12)
     ax_stack.set_xlabel('Lokasi Wisata')
     ax_stack.set_ylabel('Proporsi Sentimen (%)')
 
-    # Cara rotasi teks di ax_stack agak berbeda dengan plt
     ax_stack.set_xticks(range(len(locations)))
     ax_stack.set_xticklabels(locations, rotation=15, ha='right')
 
@@ -206,17 +200,17 @@ elif pilihan == "Bisnis 1":
     ax_stack.legend()
     fig_stack.tight_layout()
 
-    # Render di Streamlit
     st.pyplot(fig_stack)
-
     st.write("")
-        st.markdown("#### Kesimpulan Analisis Strategis:")
-        st.success("""
-        * **Dominasi Curug Malela:** Curug Malela menjadi outlier utama dengan proporsi sentimen negatif aksesibilitas mencapai 52.5% (hampir tiga kali lipat dari peringkat kedua). Ini adalah satu-satunya lokasi dengan keluhan akses mayoritas (>50%).
-        * **Pola Mayoritas Netral:** Empat lokasi lainnya dalam Top 5 (Bukit Senyum, Curug Layung, Stone Garden, Sanghyang Heuleut) memiliki pola seragam yang didominasi sentimen netral (77–81%). Mayoritas pengunjung di lokasi tersebut cenderung pasif dalam menilai aksesibilitas secara spesifik.
-        * **Konsistensi Rating dan Sentimen:** Kelima lokasi dengan masalah aksesibilitas tertinggi ini rata-rata memiliki rating menengah ke bawah (4.39 - 4.56) dibandingkan lokasi lain di dataset. Ini menunjukkan bahwa kendala aksesibilitas berkontribusi menekan nilai kepuasan pengunjung secara umum.
-        * **Anomali Data (Sampel Minim):** Lokasi Sirtwo Island Saguling tercatat memiliki rating sempurna (5.00). Namun, angka ini tidak valid untuk dijadikan acuan karena hanya didasarkan pada total 3 ulasan (sampel terendah), sehingga murni merupakan anomali statistik.
-        """)
+    
+    # FIX: Indentasi disejajarkan ulang menjadi 4 spasi (Rata Kiri)
+    st.markdown("#### Kesimpulan Analisis Strategis:")
+    st.success("""
+    * **Dominasi Curug Malela:** Curug Malela menjadi outlier utama dengan proporsi sentimen negatif aksesibilitas mencapai 52.5% (hampir tiga kali lipat dari peringkat kedua). Ini adalah satu-satunya lokasi dengan keluhan akses mayoritas (>50%).
+    * **Pola Mayoritas Netral:** Empat lokasi lainnya dalam Top 5 (Bukit Senyum, Curug Layung, Stone Garden, Sanghyang Heuleut) memiliki pola seragam yang didominasi sentimen netral (77–81%). Mayoritas pengunjung di lokasi tersebut cenderung pasif dalam menilai aksesibilitas secara spesifik.
+    * **Konsistensi Rating dan Sentimen:** Kelima lokasi dengan masalah aksesibilitas tertinggi ini rata-rata memiliki rating menengah ke bawah (4.39 - 4.56) dibandingkan lokasi lain di dataset. Ini menunjukkan bahwa kendala aksesibilitas berkontribusi menekan nilai kepuasan pengunjung secara umum.
+    * **Anomali Data (Sampel Minim):** Lokasi Sirtwo Island Saguling tercatat memiliki rating sempurna (5.00). Namun, angka ini tidak valid untuk dijadikan acuan karena hanya didasarkan pada total 3 ulasan (sampel terendah), sehingga murni merupakan anomali statistik.
+    """)
 
 # =========================================================
 # OPSI 4: JIKA MEMILIH PERTANYAAN BISNIS 2
@@ -320,6 +314,7 @@ elif pilihan == "Bisnis 2":
     * **Kelas Positif (Fokus Kemudahan):** Lebih menyoroti kenyamanan akses secara menyeluruh (`parkir`, `sangat mudah`, `tidak terlalu jauh`). Destinasi wisata seperti Kawah Ratu dan Tangkuban Perahu secara spesifik banyak mendapat pujian pada aspek ini.
     * **Topik Polarisasi:** Frasa `tiket masuk` muncul kuat di kedua kelas. Hal ini membuktikan bahwa harga tiket diukur berdasarkan kualitas aksesnya—terasa sepadan bagi yang puas dengan kemudahan lokasi, namun dianggap tidak worth it oleh mereka yang kesulitan di jalan.
     """)
+
 # =========================================================
 # OPSI 5: JIKA MEMILIH PERTANYAAN BISNIS 3 
 # =========================================================
@@ -389,15 +384,16 @@ elif pilihan == "Bisnis 3":
     st.markdown("####  Temuan Tren dan Pola (Insight):")
     st.success("""
     * **Rating bulanan sangat stabil** sepanjang 2019–2023, bergerak dalam rentang sempit 4.35–4.65, tanpa tren naik atau turun yang signifikan.
-    * **Jumlah review menunjukkan tren penurunan bertahap** sejak awal 2019 (±2500) hingga awal 2022 (±1850), diikuti oleh *drop* drastis di pertengahan 2022 menjadi sekitar 200 review per bulan. Kemungkinan besar merupakan dampak penutupan atau pembatasan wisata pasca-pandemi.
+    * **Jumlah review menunjukkan tren penurunan bertahap** sejak awal 2019 (±2500) hingga awal 2022 (±1850), diikuti oleh *drop* drastis di pertengahan 2022 menjadi sekitar 200 review per month. Kemungkinan besar merupakan dampak penutupan atau pembatasan wisata pasca-pandemi.
     * Fluktuasi rating di 2022–2023 yang sedikit lebih terlihat kemungkinan disebabkan oleh volume review yang jauh lebih kecil, sehingga setiap ulasan punya bobot proporsional yang lebih besar terhadap rata-rata.
     * **Tidak terlihat tren atau pola musiman yang konsisten** secara visual pada proporsi label aksesibilitas sepanjang periode 2019–2023.
     """)
+
 # =========================================================
 # FOOTER DASHBOARD
 # =========================================================
-st.markdown("<br><br>", unsafe_allow_html=True) # Ngasih jarak ruang kosong di bawah grafik
-st.markdown("---") # Garis pembatas tipis
+st.markdown("<br><br>", unsafe_allow_html=True) 
+st.markdown("---") 
 st.markdown(
     """
     <div style="text-align: center; font-size: 14px; color: #6c757d; padding: 10px;">
@@ -405,4 +401,4 @@ st.markdown(
     </div>
     """, 
     unsafe_allow_html=True
-)    
+)
